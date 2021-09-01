@@ -13,7 +13,7 @@
         <% data["Search"].forEach(function(movie){  %>
           <div class="col-sm-3" style="margin-bottom: 1%;">
             <div class="card" style="width: 18rem; height: 35rem;">
-              <img src="<%= movie["Poster"] %>" class="card-img-top" alt="movie["Title"]" style="height: 400;">
+              <img src="<%= movie["Poster"] %>" class="card-img-top" alt="<%= movie["Title"] %>" style="height: 400;">
               <div class="card-body">
                 <h5 class="card-title"><%= movie["Title"] %></h5>
                 <p class="card-text"><%= movie["Year"] %></p>
