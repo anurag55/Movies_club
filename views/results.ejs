@@ -1,35 +1,33 @@
-<%  include Partials/header  %>
+<%-  include('Partials/header.ejs')  %>
 
-<h1 style="font-family:sans-serif">Here is your list</h1>
+<div class="d-flex justify-content-center">
+  <h1 style="font-family:sans-serif">Here is your list</h1>
+</div>
 </br>
-  <a class="btn btn-primary" href="/form">Back to movie search</a>
+  <a class="btn btn-primary" href="/form" style="margin-left: 1%;">Back to movie search</a>
 </br></br>
-<style>
-  li{
-    list-style-type: none;
-  }
-  h6{
-    font-family: sans-serif;
-    text-align: inherit;
-  }
 
-</style>
-
-<div class="container-fluid">
-<div class="row">
-<% data["Search"].forEach(function(movie){  %>
-
-
-    <div class="col-md-4 col-sm-12" >
-        <div class="thumbnail"><img src="<%= movie["Poster"] %>" width:100 height:100%></img>
-          <li> <h6> <%= movie["Title"] %> </h6> </li>
-          <li> <h6> <%= movie["Year"] %> </h6> </li>
-          <li> <h6> <%= movie["Type"] %> </h6> </li>
-        </div>
+<% if ("Search" in data){ %>
+  <div class="container-fluid">
+    <div class="row">
+        <% data["Search"].forEach(function(movie){  %>
+          <div class="col-sm-3" style="margin-bottom: 1%;">
+            <div class="card" style="width: 18rem; height: 35rem;">
+              <img src="<%= movie["Poster"] %>" class="card-img-top" alt="<%= movie["Title"] %>" style="height: 400;">
+              <div class="card-body">
+                <h5 class="card-title"><%= movie["Title"] %></h5>
+                <p class="card-text"><%= movie["Year"] %></p>
+                <p class="card-text"><%= movie["Type"].toUpperCase() %></p>
+              </div>
+            </div>
+          </div>
+        <%  })  %>
     </div>
+  </div>
+<% } else { %>
+  <div class="d-flex justify-content-center">
+    <h3 style="font-family:sans-serif">Oops! No Movies Found</h1>
+  </div>
+<% } %>
 
-
-
-<%  })  %>
-</div>
-</div>
+<%- include('Partials/footer.ejs') %>
